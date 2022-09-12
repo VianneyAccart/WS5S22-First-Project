@@ -19,6 +19,7 @@ const PORT = 4000;
 
 async function start() {
   await dataSource.initialize();
+  await dataSource.getRepository(Wilder).clear();
   await dataSource.getRepository(Wilder).save({ name: "Vianney" });
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT} !`);
