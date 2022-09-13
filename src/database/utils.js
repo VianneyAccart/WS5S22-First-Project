@@ -19,4 +19,8 @@ async function getDatabase() {
   return dataSource;
 }
 
-module.exports = { dataSource, getDatabase };
+async function getWilderRepository() {
+  return (await getDatabase()).getRepository(Wilder);
+}
+
+module.exports = { dataSource, getDatabase, getWilderRepository };
