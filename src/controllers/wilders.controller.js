@@ -25,9 +25,7 @@ const put = async (req, res) => {
   const { firstname, lastname } = req.body;
 
   if (!firstname || !lastname)
-    res
-      .status(400)
-      .json({ error: "ID, firstname and lastname are required !" });
+    res.status(400).json({ error: "Firstname and lastname are required !" });
   else {
     try {
       const updatedWilder = await updateWilder(id, firstname, lastname);
