@@ -26,7 +26,7 @@ async function updateWilder(firstname, lastname, id) {
   const wilderToUpdate = await wilderRepository.findOneBy({
     id: id,
   });
-  if (!wilderToUpdate) return "Wilder not found";
+  if (!wilderToUpdate) throw Error("Wilder not found !");
   else {
     wilderToUpdate.firstname = firstname;
     wilderToUpdate.lastname = lastname;
@@ -40,7 +40,7 @@ async function deleteWilderById(id) {
   const wilderToDelete = await wilderRepository.findOneBy({
     id: id,
   });
-  if (!wilderToDelete) return "Wilder not found";
+  if (!wilderToDelete) throw Error("Wilder not found !");
   else {
     await wilderRepository.remove(wilderToDelete);
     return "Wilder well deleted !";

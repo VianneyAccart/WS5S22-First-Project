@@ -29,12 +29,16 @@ const put = async (req, res) => {
   if (!req.params.id) {
     res.status(400).json({ error: "ID is required !" });
   } else {
-    const wilderToUpdate = await updateWilder(
-      firstname,
-      lastname,
-      req.params.id
-    );
-    res.status(201).json(wilderToUpdate);
+    try {
+      const wilderToUpdate = await updateWilder(
+        firstname,
+        lastname,
+        req.params.id
+      );
+      res.status(201).json(wilderToUpdate);
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
   }
 };
 
@@ -42,8 +46,13 @@ const deleteWilder = async (req, res) => {
   if (!req.params.id) {
     res.status(400).json({ error: "ID is required !" });
   } else {
-    const wilderToDelete = await deleteWilderById(req.params.id);
-    res.status(200).json(wilderToDelete);
+    try {
+      const wilderToDelete = await deleteWilderById(req.params.id);
+      res.status(200).json(wilderToDelete);
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({ error: error.message });
+    }
   }
 };
 
