@@ -15,4 +15,4 @@ async function createWilder() {
   return;
 }
 
-module.exports = { initializeWilders, createWilder };
+module.exports = { initializeWilders, createWilder, getWilders };
