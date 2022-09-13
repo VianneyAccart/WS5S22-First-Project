@@ -21,18 +21,15 @@ async function createWilder(firstname, lastname) {
   return newWilder;
 }
 
-async function updateWilder(firstname, lastname, id) {
+async function updateWilder(id, firstname, lastname) {
   const wilderRepository = await getWilderRepository();
-  const wilderToUpdate = await wilderRepository.findOneBy({
-    id: id,
+  const existingWilder = await wilderRepository.findOneBy({
+    id,
   });
-  if (!wilderToUpdate) throw Error("Wilder not found !");
-  else {
-    wilderToUpdate.firstname = firstname;
-    wilderToUpdate.lastname = lastname;
-    await wilderRepository.save(wilderToUpdate);
-    return wilderToUpdate;
+  if (!existingWilder) {
+    throw Error("No existing Wilder matching ID.");
   }
+  return wilderRepository.save({ id, firstname, lastname });
 }
 
 async function deleteWilderById(id) {

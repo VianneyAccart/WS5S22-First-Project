@@ -21,21 +21,17 @@ const post = async (req, res) => {
 };
 
 const put = async (req, res) => {
+  const { id } = req.params;
   const { firstname, lastname } = req.body;
-  if (!firstname || !lastname) {
-    res.status(400).json({ error: "Firstname and lastname are required !" });
-  }
 
-  if (!req.params.id) {
-    res.status(400).json({ error: "ID is required !" });
-  } else {
+  if (!id || !firstname || !lastname)
+    res
+      .status(400)
+      .json({ error: "ID, firstname and lastname are required !" });
+  else {
     try {
-      const wilderToUpdate = await updateWilder(
-        firstname,
-        lastname,
-        req.params.id
-      );
-      res.status(201).json(wilderToUpdate);
+      const updatedWilder = await updateWilder(id, firstname, lastname);
+      res.json(updatedWilder);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
