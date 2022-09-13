@@ -26,22 +26,17 @@ async function updateWilder(id, firstname, lastname) {
   const existingWilder = await wilderRepository.findOneBy({
     id,
   });
-  if (!existingWilder) {
-    throw Error("No existing Wilder matching ID.");
-  }
+  if (!existingWilder) throw Error("No existing Wilder matching ID.");
   return wilderRepository.save({ id, firstname, lastname });
 }
 
-async function deleteWilderById(id) {
+async function deleteWilder(id) {
   const wilderRepository = await getWilderRepository();
-  const wilderToDelete = await wilderRepository.findOneBy({
-    id: id,
+  const existingWilder = await wilderRepository.findOneBy({
+    id,
   });
-  if (!wilderToDelete) throw Error("Wilder not found !");
-  else {
-    await wilderRepository.remove(wilderToDelete);
-    return "Wilder well deleted !";
-  }
+  if (!existingWilder) throw Error("No existing Wilder matching ID.");
+  return wilderRepository.remove(existingWilder);
 }
 
 module.exports = {
@@ -49,5 +44,5 @@ module.exports = {
   createWilder,
   getWilders,
   updateWilder,
-  deleteWilderById,
+  deleteWilder,
 };
