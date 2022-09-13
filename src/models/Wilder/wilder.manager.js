@@ -21,4 +21,18 @@ async function createWilder(firstname, lastname) {
   return newWilder;
 }
 
-module.exports = { initializeWilders, createWilder, getWilders };
+async function updateWilder(firstname, lastname, id) {
+  const wilderRepository = await getWilderRepository();
+  const wilderToUpdate = await wilderRepository.findOneBy({
+    id: id,
+  });
+  if (!wilderToUpdate) return "Wilder not found";
+  else {
+    wilderToUpdate.firstname = firstname;
+    wilderToUpdate.lastname = lastname;
+    await wilderRepository.save(wilderToUpdate);
+    return wilderToUpdate;
+  }
+}
+
+module.exports = { initializeWilders, createWilder, getWilders, updateWilder };
