@@ -1,5 +1,5 @@
 const express = require("express");
-const wildersControllers = require("./controller/wilders");
+const wildersControllers = require("./controllers/wilders");
 const { initializeWilders } = require("./models/Wilder/manager");
 
 const app = express();
