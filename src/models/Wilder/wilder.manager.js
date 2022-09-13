@@ -35,4 +35,22 @@ async function updateWilder(firstname, lastname, id) {
   }
 }
 
-module.exports = { initializeWilders, createWilder, getWilders, updateWilder };
+async function deleteWilderById(id) {
+  const wilderRepository = await getWilderRepository();
+  const wilderToDelete = await wilderRepository.findOneBy({
+    id: id,
+  });
+  if (!wilderToDelete) return "Wilder not found";
+  else {
+    await wilderRepository.remove(wilderToDelete);
+    return "Wilder well deleted !";
+  }
+}
+
+module.exports = {
+  initializeWilders,
+  createWilder,
+  getWilders,
+  updateWilder,
+  deleteWilderById,
+};

@@ -2,11 +2,12 @@ const {
   getWilders,
   createWilder,
   updateWilder,
+  deleteWilderById,
 } = require("../models/Wilder/wilder.manager");
 
 const get = async (req, res) => {
   const wilders = await getWilders();
-  res.json(wilders);
+  res.status(200).json(wilders);
 };
 
 const post = async (req, res) => {
@@ -37,8 +38,18 @@ const put = async (req, res) => {
   }
 };
 
+const deleteWilder = async (req, res) => {
+  if (!req.params.id) {
+    res.status(400).json({ error: "ID is required !" });
+  } else {
+    const wilderToDelete = await deleteWilderById(req.params.id);
+    res.status(200).json(wilderToDelete);
+  }
+};
+
 module.exports = {
   get,
   post,
   put,
+  deleteWilder,
 };
