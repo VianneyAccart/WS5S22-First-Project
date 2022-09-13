@@ -1,4 +1,5 @@
 const express = require("express");
+const wildersControllers = require("./controller/wilders");
 const { initializeWilders } = require("./models/Wilder/manager");
 
 const app = express();
@@ -6,6 +7,8 @@ const app = express();
 app.get("/", function (req, res) {
   res.send("Hello World !");
 });
+
+app.get("/wilders", wildersControllers.get);
 
 const PORT = 4000;
 
