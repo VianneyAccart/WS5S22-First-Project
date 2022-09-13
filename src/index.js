@@ -1,6 +1,6 @@
 const express = require("express");
-const wildersControllers = require("./controllers/wilders");
-const { initializeWilders } = require("./models/Wilder/manager");
+const wildersControllers = require("./controllers/wilders.controller");
+const { initializeWilders } = require("./models/Wilder/wilder.manager");
 
 const app = express();
 app.use(express.json());
