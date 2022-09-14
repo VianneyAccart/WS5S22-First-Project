@@ -1,10 +1,15 @@
-import blankProfilePicture from "../medias/blank-profile-picture.png";
-import Skill from "./Skill";
+import blankProfilePicture from "../../medias/blank-profile-picture.png";
+import Skill from "../skill/Skill";
+import styles from "./Wilder.module.css";
 
 const Wilder = ({ firstname, lastname, skills }) => {
   return (
-    <article className="card">
-      <img src={blankProfilePicture} alt={`${firstname}'s profile`} />
+    <article className={styles.card}>
+      <img
+        className={styles.img}
+        src={blankProfilePicture}
+        alt={`${firstname}'s profile`}
+      />
       <h3>
         {firstname} {lastname}
       </h3>
@@ -15,7 +20,7 @@ const Wilder = ({ firstname, lastname, skills }) => {
         commodo consequat.
       </p>
       <h4>Wild Skills</h4>
-      <ul className="skills">
+      <ul className={styles.skills}>
         {skills.map((skill) => (
           <li key={skill.id}>
             <Skill skillName={skill.skillName} numberOfVotes="3" />

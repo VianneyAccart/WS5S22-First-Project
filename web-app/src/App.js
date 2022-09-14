@@ -1,5 +1,5 @@
-import "./App.css";
-import Wilder from "./components/Wilder";
+import Wilder from "./components/wilder/Wilder";
+import styles from "./App.module.css";
 
 const WILDERS = [
   {
@@ -37,6 +37,14 @@ const WILDERS = [
         id: "skill-2",
         skillName: "JavaScript",
       },
+      {
+        id: "skill-3",
+        skillName: "TypeScript",
+      },
+      {
+        id: "skill-4",
+        skillName: "Java",
+      },
     ],
   },
 ];
@@ -47,13 +55,13 @@ function App() {
   return (
     <div>
       <header>
-        <div className="container">
+        <div className={styles.container}>
           <h1>Wilders Book</h1>
         </div>
       </header>
-      <main className="container">
+      <main className={styles.container}>
         <h2>Wilders</h2>
-        <section className="card-row">
+        <section className={styles.cardRow}>
           {WILDERS.map((wilder) => (
             <Wilder
               key={wilder.id}
@@ -65,7 +73,7 @@ function App() {
         </section>
       </main>
       <footer>
-        <div className="container">
+        <div className={styles.container}>
           <p>&copy; 2022 Wild Code School</p>
         </div>
       </footer>
