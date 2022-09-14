@@ -1,8 +1,48 @@
 import "./App.css";
 import Wilder from "./components/Wilder";
 
+const WILDERS = [
+  {
+    id: "wilder-1",
+    firstname: "Vianney",
+    lastname: "Accart",
+    skills: [
+      {
+        id: "skill-1",
+        skillName: "PHP",
+      },
+    ],
+  },
+  {
+    id: "wilder-2",
+    firstname: "Adam",
+    lastname: "Roux",
+    skills: [
+      {
+        id: "skill-2",
+        skillName: "JavaScript",
+      },
+    ],
+  },
+  {
+    id: "wilder-3",
+    firstname: "Ario",
+    lastname: "Ngu",
+    skills: [
+      {
+        id: "skill-1",
+        skillName: "PHP",
+      },
+      {
+        id: "skill-2",
+        skillName: "JavaScript",
+      },
+    ],
+  },
+];
+
 function App() {
-  // fetch list of wilders from API.
+  // fetch list of wilders from API
 
   return (
     <div>
@@ -14,14 +54,14 @@ function App() {
       <main className="container">
         <h2>Wilders</h2>
         <section className="card-row">
-          <Wilder
-            firstname="Vianney"
-            lastname="Accart"
-            name=""
-            numberOfVotes=""
-          />
-          <Wilder firstname="Adam" lastname="Roux" name="" numberOfVotes="" />
-          <Wilder firstname="Ario" lastname="Ngu" name="" numberOfVotes="" />
+          {WILDERS.map((wilder) => (
+            <Wilder
+              key={wilder.id}
+              firstname={wilder.firstname}
+              lastname={wilder.lastname}
+              skills={wilder.skills}
+            />
+          ))}
         </section>
       </main>
       <footer>
