@@ -4,6 +4,7 @@ const {
   updateWilder,
   deleteWilder,
   addSkillToWilder,
+  deleteSkillFromWilder,
 } = require("../models/Wilder/wilder.manager");
 
 const get = async (req, res) => {
@@ -64,10 +65,26 @@ const addSkill = async (req, res) => {
   }
 };
 
+const removeSkillFromWilder = async (req, res) => {
+  const { id: wilderId } = req.params;
+  const { skillId } = req.body;
+
+  if (!skillId) res.status(400).json({ error: "Skill ID is required !" });
+  else {
+    try {
+      const updatedWilder = await deleteSkillFromWilder(wilderId, skillId);
+      res.json(updatedWilder);
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
+  }
+};
+
 module.exports = {
   get,
   post,
   put,
   del,
   addSkill,
+  removeSkillFromWilder,
 };

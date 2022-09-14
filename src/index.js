@@ -13,6 +13,10 @@ app.post(WILDERS_PATH, wildersControllers.post);
 app.put(`${WILDERS_PATH}/:id`, wildersControllers.put);
 app.delete(`${WILDERS_PATH}/:id`, wildersControllers.del);
 app.post(`${WILDERS_PATH}/:id/skills`, wildersControllers.addSkill);
+app.delete(
+  `${WILDERS_PATH}/:id/skills`,
+  wildersControllers.removeSkillFromWilder
+);
 
 const PORT = 4000;
 

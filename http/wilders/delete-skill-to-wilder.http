@@ -1,4 +1,4 @@
-POST http://localhost:4000/wilders/357d6407-b21e-487a-aef3-f68a3fb502c5/skills
+DELETE http://localhost:4000/wilders/357d6407-b21e-487a-aef3-f68a3fb502c5/skills
 Content-Type: application/json
 
 {

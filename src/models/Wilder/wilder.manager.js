@@ -70,6 +70,23 @@ async function addSkillToWilder(wilderId, skillId) {
   return wilderRepository.save(wilder);
 }
 
+async function deleteSkillFromWilder(wilderId, skillId) {
+  const wilderRepository = await getWilderRepository();
+  const wilder = await wilderRepository.findOneBy({
+    id: wilderId,
+  });
+  if (!wilder) throw Error("No existing Wilder matching ID.");
+
+  const skillRepository = await getSkillRepository();
+  const skill = await skillRepository.findOneBy({
+    id: skillId,
+  });
+  if (!skill) throw Error("No existing skill matching ID.");
+
+  wilder.skills = wilder.skills.filter((s) => s.id !== skill.id);
+  return wilderRepository.save(wilder);
+}
+
 module.exports = {
   initializeWilders,
   createWilder,
@@ -77,4 +94,5 @@ module.exports = {
   updateWilder,
   deleteWilder,
   addSkillToWilder,
+  deleteSkillFromWilder,
 };
