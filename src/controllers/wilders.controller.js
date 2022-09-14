@@ -12,6 +12,7 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   const { firstname, lastname } = req.body;
+
   if (!firstname || !lastname)
     res.status(400).json({ error: "Firstname and lastname are required !" });
   else {

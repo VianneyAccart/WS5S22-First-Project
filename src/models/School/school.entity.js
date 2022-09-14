@@ -1,25 +1,16 @@
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "Wilder",
+  name: "School",
   columns: {
     id: {
       primary: true,
       type: "uuid",
       generated: "uuid",
     },
-    firstname: {
+    schoolName: {
       type: "text",
-    },
-    lastname: {
-      type: "text",
-    },
-  },
-  relations: {
-    school: {
-      target: "School",
-      type: "many-to-one",
-      eager: true,
+      unique: true,
     },
   },
 });
