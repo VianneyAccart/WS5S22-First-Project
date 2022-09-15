@@ -1,6 +1,7 @@
 import styles from "./Home.module.scss";
 import Wilder from "../../components/Wilder/Wilder";
 import { useEffect, useState } from "react";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const [wilders, setWilders] = useState(null);
@@ -19,8 +20,8 @@ const Home = () => {
     <>
       <h2>Wilders</h2>
       {isLoading ? (
-        "Loading..."
-      ) : (
+        <Loader />
+      ) : wilders.length ? (
         <section className={styles.cardRow}>
           {wilders?.map((wilder) => (
             <Wilder
@@ -31,6 +32,8 @@ const Home = () => {
             />
           ))}
         </section>
+      ) : (
+        <p>Oops... It seems that no wilder has been found !</p>
       )}
     </>
   );
