@@ -8,8 +8,10 @@ async function initializeSchools() {
   const wilderRepository = await getWilderRepository();
   await wilderRepository.clear();
   await schoolRepository.clear();
-  await schoolRepository.save({ schoolName: "Lyon" });
-  await schoolRepository.save({ schoolName: "Brest" });
+  const schools = ["Lyon", "Paris", "Brest", "Angers", "Marseille"];
+  schools.forEach((school) => {
+    schoolRepository.save({ schoolName: school });
+  });
 }
 
 async function getSchoolByName(name) {

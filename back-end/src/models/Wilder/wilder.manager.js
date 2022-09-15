@@ -3,20 +3,34 @@ const {
   getSkillRepository,
 } = require("../../database/utils");
 const { getSchoolByName } = require("../School/school.manager");
+const { getSkillByName } = require("../Skill/skill.manager");
 
 async function initializeWilders() {
   const wilderRepository = await getWilderRepository();
   await wilderRepository.clear();
   const lyonSchool = await getSchoolByName("Lyon");
+  const marseilleSchool = await getSchoolByName("Marseille");
+  const php = await getSkillByName("PHP");
+  const javascript = await getSkillByName("JavaScript");
+  const typescript = await getSkillByName("TypeScript");
+  const java = await getSkillByName("Java");
   await wilderRepository.save({
     firstname: "Vianney",
     lastname: "Accart",
     school: lyonSchool,
+    skills: [php, javascript],
   });
   await wilderRepository.save({
     firstname: "Adam",
     lastname: "Roux",
     school: lyonSchool,
+    skills: [typescript, java],
+  });
+  await wilderRepository.save({
+    firstname: "Ario",
+    lastname: "Ngu",
+    school: marseilleSchool,
+    skills: [java],
   });
 }
 
