@@ -1,5 +1,5 @@
 import Wilder from "./components/wilder/Wilder";
-import styles from "./App.module.css";
+import styles from "./App.module.scss";
 
 const WILDERS = [
   {

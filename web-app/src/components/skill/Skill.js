@@ -1,4 +1,4 @@
-import styles from "./Skill.module.css";
+import styles from "./Skill.module.scss";
 
 const Skill = ({ skillName, numberOfVotes }) => {
   return (
