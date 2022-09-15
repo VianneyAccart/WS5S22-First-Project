@@ -1,5 +1,5 @@
 import blankProfilePicture from "../../medias/blank-profile-picture.png";
-import Skill from "../skill/Skill";
+import Skill from "../Skill/Skill";
 import styles from "./Wilder.module.scss";
 
 const Wilder = ({ firstname, lastname, skills }) => {
