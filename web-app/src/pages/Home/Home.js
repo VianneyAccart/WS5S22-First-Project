@@ -3,6 +3,7 @@ import Wilder from "../../components/Wilder/Wilder";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
+import { fetchWilders } from "./rest";
 
 const Home = () => {
   const [wilders, setWilders] = useState(null);
@@ -10,8 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/wilders");
-      const wilders = await response.json();
+      const wilders = await fetchWilders();
       setWilders(wilders);
       setIsLoading(false);
     })();
