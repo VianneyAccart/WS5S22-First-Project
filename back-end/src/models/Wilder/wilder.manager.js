@@ -2,7 +2,7 @@ const {
   getWilderRepository,
   getSkillRepository,
 } = require("../../database/utils");
-const { getSchoolByName } = require("../School/school.manager");
+const { getSchoolByName, getSchoolById } = require("../School/school.manager");
 const { getSkillByName } = require("../Skill/skill.manager");
 
 async function initializeWilders() {
@@ -39,11 +39,15 @@ async function getWilders() {
   return wilderRepository.find();
 }
 
-async function createWilder(firstname, lastname) {
+async function createWilder(firstname, lastname, schoolId) {
   const wilderRepository = await getWilderRepository();
+  const school = await getSchoolById(schoolId);
+  console.log(school);
+  if (!school) throw Error("No existing school matching ID.");
   const newWilder = wilderRepository.create({
     firstname,
     lastname,
+    school,
   });
   await wilderRepository.save(newWilder);
   return newWilder;
