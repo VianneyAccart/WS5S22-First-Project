@@ -1,5 +1,5 @@
+import { query, WILDERS_PATH } from "../../services/rest";
+
 export async function fetchWilders() {
-  const response = await fetch("/wilders");
-  const wilders = await response.json();
-  return wilders;
+  return query(WILDERS_PATH, "GET");
 }
