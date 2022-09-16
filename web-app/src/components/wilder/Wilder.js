@@ -2,7 +2,7 @@ import blankProfilePicture from "../../medias/blank-profile-picture.png";
 import Skill from "../Skill/Skill";
 import styles from "./Wilder.module.scss";
 
-const Wilder = ({ firstname, lastname, skills }) => {
+const Wilder = ({ firstname, lastname, skills, school }) => {
   return (
     <article className={styles.card}>
       <img
@@ -19,6 +19,8 @@ const Wilder = ({ firstname, lastname, skills }) => {
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
+      <h4>School</h4>
+      <p>{school.schoolName}</p>
       <h4>Wild Skills</h4>
       <ul className={styles.skills}>
         {skills.map((skill) => (

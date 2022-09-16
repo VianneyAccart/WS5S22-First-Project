@@ -46,6 +46,7 @@ const Home = () => {
               firstname={wilder.firstname}
               lastname={wilder.lastname}
               skills={wilder.skills}
+              school={wilder.school}
             />
           ))}
         </section>

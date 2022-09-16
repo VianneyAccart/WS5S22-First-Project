@@ -1,20 +1,36 @@
-import { useState } from "react";
-import { createWilder } from "./rest";
+import { useState, useEffect } from "react";
+import { createWilder, fetchSchools } from "./rest";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateWilder = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [schools, setSchools] = useState(null);
+  const [school, setSchool] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const schools = await fetchSchools();
+        setSchools(schools);
+      } catch (error) {
+        toast.error(error.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      }
+    })();
+  }, []);
 
   const submit = async () => {
     try {
-      await createWilder(firstname, lastname);
+      await createWilder(firstname, lastname, school);
       toast.success(`Wilder ${firstname} ${lastname} created successfully !`, {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       setFirstname("");
       setLastname("");
+      setSchool("");
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -61,7 +77,29 @@ const CreateWilder = () => {
           ></input>
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <label htmlFor="school">
+          School
+          <br />
+          <select
+            name="school"
+            id="school"
+            onChange={(event) => {
+              setSchool(event.target.value);
+            }}
+            value={school ? school : ""}
+          >
+            <option value="" disabled>
+              Select a school
+            </option>
+            {schools?.map((school) => (
+              <option key={school.id} value={school.id}>
+                {school.schoolName}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <input className="mt-2" type="submit" value="Submit" />
       </form>
       <ToastContainer />
     </>

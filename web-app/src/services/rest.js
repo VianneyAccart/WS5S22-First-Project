@@ -1,4 +1,5 @@
 export const WILDERS_PATH = "/wilders";
+export const SCHOOLS_PATH = "/schools";
 
 export async function query(url, method, body) {
   let httpStatusError = false;
