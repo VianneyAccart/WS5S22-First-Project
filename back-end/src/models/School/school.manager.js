@@ -19,7 +19,13 @@ async function getSchoolByName(name) {
   return schoolRepository.findOneBy({ schoolName: name });
 }
 
+async function getSchools() {
+  const schoolRepository = await getSchoolRepository();
+  return schoolRepository.find();
+}
+
 module.exports = {
   initializeSchools,
   getSchoolByName,
+  getSchools,
 };
