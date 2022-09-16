@@ -42,6 +42,7 @@ const CreateWilder = () => {
             onChange={(event) => {
               setFirstname(event.target.value);
             }}
+            required
           ></input>
         </label>
         <br />
@@ -56,6 +57,7 @@ const CreateWilder = () => {
             onChange={(event) => {
               setLastname(event.target.value);
             }}
+            required
           ></input>
         </label>
         <br />

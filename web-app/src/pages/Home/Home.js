@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
 import { fetchWilders } from "./rest";
+import { toast, ToastContainer } from "react-toastify";
 
 const Home = () => {
   const [wilders, setWilders] = useState(null);
@@ -11,9 +12,16 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const wilders = await fetchWilders();
-      setWilders(wilders);
-      setIsLoading(false);
+      try {
+        const wilders = await fetchWilders();
+        setWilders(wilders);
+      } catch (error) {
+        toast.error(error.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []);
 
@@ -30,7 +38,7 @@ const Home = () => {
 
       {isLoading ? (
         <Loader />
-      ) : wilders.length ? (
+      ) : wilders?.length ? (
         <section className={styles.cardRow}>
           {wilders?.map((wilder) => (
             <Wilder
@@ -44,6 +52,7 @@ const Home = () => {
       ) : (
         <p>Oops... It seems that no wilder has been found !</p>
       )}
+      <ToastContainer />
     </>
   );
 };
