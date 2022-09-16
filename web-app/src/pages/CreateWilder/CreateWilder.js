@@ -10,11 +10,15 @@ const CreateWilder = () => {
   const submit = async () => {
     try {
       await createWilder(firstname, lastname);
-      toast.success(`Wilder ${firstname} ${lastname} created successfully !`);
+      toast.success(`Wilder ${firstname} ${lastname} created successfully !`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       setFirstname("");
       setLastname("");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
