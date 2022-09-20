@@ -1,6 +1,6 @@
-const { getSkillRepository } = require("../../database/utils");
+import { getSkillRepository } from "../../database/utils";
 
-async function initializeSkills() {
+export async function initializeSkills() {
   const skillRepository = await getSkillRepository();
   await skillRepository.clear();
   const langages = ["PHP", "JavaScript", "TypeScript", "Java"];
@@ -11,12 +11,7 @@ async function initializeSkills() {
   });
 }
 
-async function getSkillByName(name) {
+export async function getSkillByName(name: string) {
   const skillRepository = await getSkillRepository();
   return skillRepository.findOneBy({ skillName: name });
 }
-
-module.exports = {
-  initializeSkills,
-  getSkillByName,
-};
