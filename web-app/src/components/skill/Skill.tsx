@@ -1,6 +1,12 @@
 import styles from "./Skill.module.scss";
 
-const Skill = ({ skillName, numberOfVotes }) => {
+const Skill = ({
+  skillName,
+  numberOfVotes,
+}: {
+  skillName: string;
+  numberOfVotes: string;
+}) => {
   return (
     <>
       {skillName}

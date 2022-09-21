@@ -5,9 +5,11 @@ import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
 import { fetchWilders } from "./rest";
 import { toast, ToastContainer } from "react-toastify";
+import { getErrorMessage } from "../../utils";
+import { WilderType } from "../../types";
 
 const Home = () => {
-  const [wilders, setWilders] = useState(null);
+  const [wilders, setWilders] = useState<null | WilderType[]>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +18,7 @@ const Home = () => {
         const wilders = await fetchWilders();
         setWilders(wilders);
       } catch (error) {
-        toast.error(error.message, {
+        toast.error(getErrorMessage(error), {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       } finally {
@@ -40,7 +42,7 @@ const Home = () => {
         <Loader />
       ) : wilders?.length ? (
         <section className={styles.cardRow}>
-          {wilders?.map((wilder) => (
+          {wilders?.map((wilder: WilderType) => (
             <Wilder
               key={wilder.id}
               firstname={wilder.firstname}

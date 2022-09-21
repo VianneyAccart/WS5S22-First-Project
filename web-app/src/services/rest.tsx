@@ -1,7 +1,19 @@
 export const WILDERS_PATH = "/wilders";
 export const SCHOOLS_PATH = "/schools";
 
-export async function query(url, method, body) {
+export enum HTTPVerb {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
+}
+
+export async function query(
+  url: string,
+  method: HTTPVerb,
+  body?: Record<string, unknown>
+): Promise<any> {
   let httpStatusError = false;
   try {
     const response = await fetch(url, {
@@ -16,7 +28,7 @@ export async function query(url, method, body) {
       throw Error(message.error);
     }
     return message;
-  } catch (error) {
+  } catch (error: any) {
     if (httpStatusError) throw Error(error.message);
     throw Error("Unable to reach the server. Check your internet connection");
   }

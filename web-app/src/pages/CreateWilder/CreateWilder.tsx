@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { createWilder, fetchSchools } from "./rest";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getErrorMessage } from "../../utils";
+import { School } from "../../types";
 
 const CreateWilder = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [schools, setSchools] = useState(null);
+  const [schools, setSchools] = useState<null | School[]>(null);
   const [school, setSchool] = useState("");
 
   useEffect(() => {
@@ -15,14 +17,14 @@ const CreateWilder = () => {
         const schools = await fetchSchools();
         setSchools(schools);
       } catch (error) {
-        toast.error(error.message, {
+        toast.error(getErrorMessage(error), {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       }
     })();
   }, []);
 
-  const submit = async () => {
+  const submit = async (): Promise<void> => {
     try {
       await createWilder(firstname, lastname, school);
       toast.success(`Wilder ${firstname} ${lastname} created successfully !`, {
@@ -32,7 +34,7 @@ const CreateWilder = () => {
       setLastname("");
       setSchool("");
     } catch (error) {
-      toast.error(error.message, {
+      toast.error(getErrorMessage(error), {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
@@ -91,7 +93,7 @@ const CreateWilder = () => {
             <option value="" disabled>
               Select a school
             </option>
-            {schools?.map((school) => (
+            {schools?.map((school: School) => (
               <option key={school.id} value={school.id}>
                 {school.schoolName}
               </option>

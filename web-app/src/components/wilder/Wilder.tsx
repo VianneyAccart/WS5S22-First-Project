@@ -1,8 +1,19 @@
 import blankProfilePicture from "../../medias/blank-profile-picture.png";
+import { School, Skill as skill } from "../../types";
 import Skill from "../Skill/Skill";
 import styles from "./Wilder.module.scss";
 
-const Wilder = ({ firstname, lastname, skills, school }) => {
+const Wilder = ({
+  firstname,
+  lastname,
+  skills,
+  school,
+}: {
+  firstname: string;
+  lastname: string;
+  skills: skill[];
+  school: School;
+}) => {
   return (
     <article className={styles.card}>
       <img
