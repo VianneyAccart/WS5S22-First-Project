@@ -1,8 +1,8 @@
-import { getSchools } from "../entities/School/school.manager";
 import { Request, Response } from "express";
+import SchoolRepository from "../models/School/school.repository";
 
 const get = async (req: Request, res: Response) => {
-  const schools = await getSchools();
+  const schools = await SchoolRepository.getSchools();
   res.status(200).json(schools);
 };
 

@@ -14,12 +14,12 @@ export default class Wilder {
   constructor(
     firstname: string,
     lastname: string,
-    school?: School,
+    school: School,
     skills?: Skill[]
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
-    if (school) this.school = school;
+    this.school = school;
     if (skills) this.skills = skills;
   }
 
@@ -38,4 +38,8 @@ export default class Wilder {
   @ManyToMany(() => Skill, { eager: true })
   @JoinTable()
   skills: Skill[];
+
+  getFullName() {
+    return `${this.firstname} ${this.lastname}`;
+  }
 }

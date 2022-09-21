@@ -1,9 +1,9 @@
 import express from "express";
 import wildersController from "./controllers/wilders.controller";
 import schoolsController from "./controllers/school.controller";
-import { initializeWilders } from "./entities/Wilder/wilder.manager";
-import { initializeSchools } from "./entities/School/school.manager";
-import { initializeSkills } from "./entities/Skill/skill.manager";
+import WilderRepository from "./models/Wilder/wilder.repository";
+import SkillRepository from "./models/Skill/skill.repository";
+import SchoolRepository from "./models/School/school.repository";
 
 const app = express();
 app.use(express.json());
@@ -22,9 +22,13 @@ app.get(SCHOOL_PATH, schoolsController.get);
 const PORT = 4000;
 
 async function start() {
-  await initializeSkills();
-  await initializeSchools();
-  await initializeWilders();
+  await SkillRepository.initializeRepository();
+  await SchoolRepository.initializeRepository();
+  await WilderRepository.initializeRepository();
+
+  await SchoolRepository.initializeSchools();
+  await SkillRepository.initializeSkills();
+  await WilderRepository.initializeWilders();
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT} !`);
   });
