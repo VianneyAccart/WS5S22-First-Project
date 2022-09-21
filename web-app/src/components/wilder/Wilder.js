@@ -20,7 +20,7 @@ const Wilder = ({ firstname, lastname, skills, school }) => {
         commodo consequat.
       </p>
       <h4>School</h4>
-      {/* <p>{school.schoolName}</p> */}
+      <p>{school.schoolName}</p>
       <h4>Wild Skills</h4>
       <ul className={styles.skills}>
         {skills.map((skill) => (

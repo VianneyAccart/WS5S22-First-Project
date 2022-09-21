@@ -16,11 +16,11 @@ export default class SkillRepository extends Skill {
   static async initializeSkills() {
     this.clearSkillRepository();
     const langages = ["PHP", "JavaScript", "TypeScript", "Java"];
-    langages.forEach((langage) => {
-      this.repository.save({
+    for (const langage of langages) {
+      await this.repository.save({
         skillName: langage,
       });
-    });
+    }
   }
 
   static async getSkillByName(name: string): Promise<Skill | null> {

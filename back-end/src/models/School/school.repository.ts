@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { getRepository } from "../../database/utils";
+import WilderRepository from "../Wilder/wilder.repository";
 import School from "./school.entity";
 
 export default class SchoolRepository extends School {
@@ -14,11 +15,14 @@ export default class SchoolRepository extends School {
   }
 
   static async initializeSchools(): Promise<void> {
+    await WilderRepository.clearWilderRepository();
     this.clearSchoolRepository();
     const schools = ["Lyon", "Paris", "Brest", "Angers", "Marseille"];
-    schools.forEach((school) => {
-      this.repository.save({ schoolName: school });
-    });
+    for (const school of schools) {
+      await this.repository.save({
+        schoolName: school,
+      });
+    }
   }
 
   static async getSchoolByName(name: string): Promise<School | null> {

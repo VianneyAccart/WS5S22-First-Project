@@ -26,8 +26,8 @@ async function start() {
   await SchoolRepository.initializeRepository();
   await WilderRepository.initializeRepository();
 
-  await SchoolRepository.initializeSchools();
   await SkillRepository.initializeSkills();
+  await SchoolRepository.initializeSchools();
   await WilderRepository.initializeWilders();
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT} !`);
