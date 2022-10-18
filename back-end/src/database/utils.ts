@@ -1,10 +1,13 @@
 import { DataSource, EntityTarget } from "typeorm";
+import School from "../models/School/School.entity";
+import Skill from "../models/Skill/Skill.entity";
+import Wilder from "../models/Wilder/Wilder.entity";
 
 const dataSource = new DataSource({
   type: "sqlite",
   database: "wildersdb.sqlite",
   synchronize: true,
-  entities: [__dirname + "/../models/**/*.entity.js"],
+  entities: [Skill, Wilder, School], // __dirname + "/../models/**/*.entity.js"
   logging: [],
 });
 

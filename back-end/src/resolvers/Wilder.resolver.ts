@@ -1,6 +1,7 @@
 import { Arg, Args, Mutation, Query, Resolver } from "type-graphql";
-import Wilder from "../models/Wilder/wilder.entity";
-import WilderRepository from "../models/Wilder/wilder.repository";
+import Wilder from "../models/Wilder/Wilder.entity";
+import WilderRepository from "../models/Wilder/Wilder.repository";
+
 import {
   AddSkillToWilderInput,
   CreateWilderInput,

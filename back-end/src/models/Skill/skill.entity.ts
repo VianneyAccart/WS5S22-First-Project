@@ -6,7 +6,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import Wilder from "../Wilder/wilder.entity";
+import Wilder from "../Wilder/Wilder.entity";
 
 @ObjectType()
 @Entity()

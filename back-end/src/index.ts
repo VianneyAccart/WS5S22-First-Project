@@ -1,12 +1,12 @@
-import WilderRepository from "./models/Wilder/wilder.repository";
-import SkillRepository from "./models/Skill/skill.repository";
-import SchoolRepository from "./models/School/school.repository";
+import WilderRepository from "./models/Wilder/Wilder.repository";
+import SkillRepository from "./models/Skill/Skill.repository";
+import SchoolRepository from "./models/School/School.repository";
 import { ApolloServer } from "apollo-server";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import "reflect-metadata";
 
-import WilderResolver from "./resolvers/Wilder.resolver";
 import { buildSchema } from "type-graphql";
+import WilderResolver from "./resolvers/Wilder.resolver";
 import SchoolResolver from "./resolvers/School.resolver";
 
 const startServer = async () => {

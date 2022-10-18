@@ -7,8 +7,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import School from "../School/school.entity";
-import Skill from "../Skill/skill.entity";
+import School from "../School/School.entity";
+import Skill from "../Skill/Skill.entity";
 
 @ObjectType()
 @Entity()

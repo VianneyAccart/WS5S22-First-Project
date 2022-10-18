@@ -1,6 +1,7 @@
 import { Query, Resolver } from "type-graphql";
-import School from "../models/School/school.entity";
-import SchoolRepository from "../models/School/school.repository";
+import School from "../models/School/School.entity";
+
+import SchoolRepository from "../models/School/School.repository";
 
 @Resolver(School)
 export default class SchoolResolver {
