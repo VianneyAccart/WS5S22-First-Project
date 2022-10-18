@@ -7,11 +7,12 @@ import "reflect-metadata";
 
 import WilderResolver from "./resolvers/Wilder.resolver";
 import { buildSchema } from "type-graphql";
+import SchoolResolver from "./resolvers/School.resolver";
 
 const startServer = async () => {
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [WilderResolver],
+      resolvers: [WilderResolver, SchoolResolver],
     }),
     csrfPrevention: true,
     cache: "bounded",

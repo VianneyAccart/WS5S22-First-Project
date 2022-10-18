@@ -5,7 +5,7 @@ const dataSource = new DataSource({
   database: "wildersdb.sqlite",
   synchronize: true,
   entities: [__dirname + "/../models/**/*.entity.js"],
-  logging: ["query", "error"],
+  logging: [],
 });
 
 let initialized = false;

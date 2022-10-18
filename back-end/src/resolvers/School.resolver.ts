@@ -1,0 +1,11 @@
+import { Query, Resolver } from "type-graphql";
+import School from "../models/School/school.entity";
+import SchoolRepository from "../models/School/school.repository";
+
+@Resolver(School)
+export default class SchoolResolver {
+  @Query(() => [School])
+  schools(): Promise<School[]> {
+    return SchoolRepository.getSchools();
+  }
+}
