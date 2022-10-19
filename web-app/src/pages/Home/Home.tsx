@@ -7,9 +7,28 @@ import { fetchWilders } from "./rest";
 import { toast, ToastContainer } from "react-toastify";
 import { getErrorMessage } from "../../utils";
 import { WilderType } from "../../types";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_WILDERS = gql`
+  query GetWilders {
+    wilders {
+      id
+      firstname
+      lastname
+      school {
+        id
+        schoolName
+      }
+      skills {
+        id
+        skillName
+      }
+    }
+  }
+`;
 
 const Home = () => {
-  const [wilders, setWilders] = useState<null | WilderType[]>(null);
+  /*   const [wilders, setWilders] = useState<null | WilderType[]>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -26,6 +45,9 @@ const Home = () => {
       }
     })();
   }, []);
+ */
+
+  const { data, loading, error, refetch } = useQuery(GET_WILDERS);
 
   return (
     <>
@@ -38,11 +60,11 @@ const Home = () => {
         </Link>
       </div>
 
-      {isLoading ? (
+      {loading ? (
         <Loader />
-      ) : wilders?.length ? (
+      ) : data.wilders?.length ? (
         <section className={styles.cardRow}>
-          {wilders?.map((wilder: WilderType) => (
+          {data.wilders?.map((wilder: WilderType) => (
             <Wilder
               key={wilder.id}
               firstname={wilder.firstname}
